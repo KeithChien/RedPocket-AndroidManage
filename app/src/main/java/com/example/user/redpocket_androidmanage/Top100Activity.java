@@ -49,7 +49,7 @@ public class Top100Activity extends AppCompatActivity {
     public void queryTop(){
 
         Query query = myRef.child (knode).child ("scores").orderByChild ("score").limitToFirst (100);
-        query.addValueEventListener (new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {

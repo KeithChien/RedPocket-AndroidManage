@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                System.out.println(dataSnapshot.child("account").toString() + dataSnapshot.child("password").getValue().toString());
+
                 if (account.equalsIgnoreCase(dataSnapshot.child("account").getValue().toString()) && acpassword.equalsIgnoreCase(dataSnapshot.child("password").getValue().toString())) {
 
                     Intent intent = new Intent();

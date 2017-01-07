@@ -57,7 +57,7 @@ public class Top100Query extends AppCompatActivity {
                 topScore.setStartDateInterval (testtime);
                 topScore.setEndDateInterval (testtime2);
                 topScoreArrayList.add (topScore);
-                // System.out.println (dataSnapshot.child ("startDateInterval").getKey ());
+
                 topAdapter =new TopAdapter (Top100Query.this,topScoreArrayList);
                 topView.setAdapter (topAdapter);
                 topAdapter.notifyDataSetChanged ();
@@ -72,7 +72,7 @@ public class Top100Query extends AppCompatActivity {
                         bundle.putString ("node",t.getText ().toString ());
                         intent.putExtras (bundle);
                         startActivity (intent);
-                        System.out.println (t.getText ().toString ());
+
                     }
                 });
             }

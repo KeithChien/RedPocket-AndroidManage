@@ -95,20 +95,11 @@ public class MainActivity extends AppCompatActivity {
                 if (timestamp1.before (timestamp4) && timestamp2.after (timestamp4)) {
 
                     keynode = dataSnapshot.getKey ();
-                }
-                if (keynode != null) {
-                    myRef.child (keynode).addValueEventListener (new ValueEventListener () {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            queryTop ();
-                        }
+                    queryTop();
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
                 }
+
+
 
             }
 
@@ -138,7 +129,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void queryTop(){
         Query query = myRef.child (keynode).child ("scores").orderByChild ("score").limitToFirst (100);
-        query.addValueEventListener(new ValueEventListener() {
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {

@@ -50,28 +50,15 @@ public class AllUserScore extends AppCompatActivity {
                 Timestamp timestamp2 = new Timestamp (endTime);
                 Long tslong = System.currentTimeMillis () / 1000;
                 Timestamp timestamp4 = new Timestamp (tslong);
-                System.out.println (dataSnapshot.child ("startDateInterval"));
-                System.out.println (dataSnapshot.child ("endDateInterval"));
-                System.out.println ("start" + startTime);
-                System.out.println (dataSnapshot.getKey ());
+
 
                 if (timestamp1.before (timestamp4) && timestamp2.after (timestamp4)) {
 
 
                     key = dataSnapshot.getKey ();
+                    queryTop ();
                 }
-                if (key != null){
-                    myRef.child (key).addValueEventListener (new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            queryTop ();
-                        }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                        }
-                    });
-                }
 
             }
             @Override
