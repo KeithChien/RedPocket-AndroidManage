@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         sTintent.setClass (MainActivity.this, Top100Query.class);
                         startActivity (sTintent);
                         break;
-                  /*  case R.id.action_settings3:
+                   /*case R.id.action_settings3:
                         Intent tTintent = new Intent ();
                         tTintent.setClass (MainActivity.this, TimeSet.class);
                         startActivity (tTintent);

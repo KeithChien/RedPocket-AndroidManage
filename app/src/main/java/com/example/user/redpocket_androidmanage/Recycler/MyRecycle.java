@@ -35,7 +35,7 @@ public class MyRecycle extends RecyclerView.Adapter<MyHolder> {
     public void onBindViewHolder(MyHolder holder, int position) {
 
         final GetData g = list.get(position);
-
+        holder.num.setText (""+(position+1));
         holder.displayName.setText(g.getDisplayName());
         holder.score.setText (g.getScore ());
 
