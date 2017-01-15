@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Timestamp;
@@ -55,7 +56,7 @@ public class AllUserScore extends AppCompatActivity {
                 if (timestamp1.before (timestamp4) && timestamp2.after (timestamp4)) {
 
 
-                    key = dataSnapshot.getKey ();
+                    key = dataSnapshot.child ("id").getValue ().toString ();
                     queryTop ();
                 }
 
@@ -87,8 +88,8 @@ public class AllUserScore extends AppCompatActivity {
     }
 
     public void queryTop() {
-
-        myRef.child (key).child ("scores").addValueEventListener (new ValueEventListener () {
+        Query query =database.getReference ("scores").child (key);
+        query.addValueEventListener (new ValueEventListener () {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren ()) {

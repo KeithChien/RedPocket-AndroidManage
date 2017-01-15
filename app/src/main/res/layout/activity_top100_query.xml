@@ -14,26 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/topView"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView4"/>
-
-    <TextView
-        android:text="@string/end_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="212dp"
-        android:id="@+id/textView5"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        tools:ignore="RelativeOverlap" />
-
-    <TextView
-        android:text="@string/start_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="203dp"/>
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/displayName"
         android:layout_weight="0.7"
+        android:textSize="40sp"
         android:lines="1" />
 
     <TextView
@@ -17,6 +18,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/score"
         android:layout_weight="0.7"
+        android:textSize="40sp"
         android:lines="1" />
 
 </LinearLayout>

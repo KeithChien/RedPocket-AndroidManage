@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ThemedSpinnerAdapter;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
 
 
 import com.example.user.redpocket_androidmanage.Recycler.MyDividerItemDecoration;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     MyRecycle adapter;
     String keynode;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,41 +50,48 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         recyclerView.addItemDecoration (new MyDividerItemDecoration (this,LinearLayoutManager.VERTICAL));
-        Button auScore = (Button)findViewById (R.id.auScore);
-        Button bIUpdate = (Button)findViewById (R.id.bIUpdate);
-        Button sTopScore = (Button)findViewById (R.id.sTopScore);
+
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("score-boards");
 
-        auScore.setOnClickListener (new View.OnClickListener () {
+        toolbar = (Toolbar)findViewById(R.id.toolbar2) ;
+
+
+        setSupportActionBar(toolbar);
+
+        toolbar.setOnMenuItemClickListener (new android.support.v7.widget.Toolbar.OnMenuItemClickListener () {
             @Override
-            public void onClick(View v) {
-                Intent alintent = new Intent ();
-                alintent.setClass (MainActivity.this, AllUserScore.class);
-                startActivity (alintent);
-            }
-        });
-        bIUpdate.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick(View v) {
-                Intent biintent = new Intent ();
-                biintent.setClass (MainActivity.this, UpdataBar.class);
-                startActivity (biintent);
-            }
-        });
-        sTopScore.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick(View v) {
-                Intent sTintent = new Intent ();
-                sTintent.setClass (MainActivity.this, Top100Query.class);
-                startActivity (sTintent);
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_settings:
+                        Intent alintent = new Intent ();
+                        alintent.setClass (MainActivity.this, AllUserScore.class);
+                        startActivity (alintent);
+                        break;
+                    case R.id.action_settings1:
+                        Intent biintent = new Intent ();
+                        biintent.setClass (MainActivity.this, UpdataBar.class);
+                        startActivity (biintent);
+                        break;
+                    case R.id.action_settings2:
+                        Intent sTintent = new Intent ();
+                        sTintent.setClass (MainActivity.this, Top100Query.class);
+                        startActivity (sTintent);
+                        break;
+                    case R.id.action_settings3:
+                        Intent tTintent = new Intent ();
+                        tTintent.setClass (MainActivity.this, TimeSet.class);
+                        startActivity (tTintent);
+                        break;
+                }
+                return true;
+
             }
         });
 
 
-
-        myRef.addChildEventListener (new ChildEventListener () {
+        myRef.orderByChild ("endDateInterval").addChildEventListener (new ChildEventListener () {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
@@ -94,12 +105,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if (timestamp1.before (timestamp4) && timestamp2.after (timestamp4)) {
 
-                    keynode = dataSnapshot.getKey ();
+                    keynode = dataSnapshot.child ("id").getValue ().toString ();
                     queryTop();
 
                 }
-
-
 
             }
 
@@ -128,32 +137,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void queryTop(){
-        Query query = myRef.child (keynode).child ("scores").orderByChild ("score").limitToFirst (100);
+        Query query =database.getReference ("scores").child (keynode).orderByChild ("score").limitToLast (100);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                    GetData getData = new GetData();
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                    getData.setDisplayName(ds.child("displayName").getValue().toString());
+                        GetData getData = new GetData();
 
-                    getData.setScore(ds.child("score").getValue().toString());
+                        getData.setDisplayName(ds.child("displayName").getValue().toString());
 
-                    list.add(getData);
+                        getData.setScore(ds.child("score").getValue().toString());
 
+                        list.add(getData);
+
+                    }
+                    Collections.reverse(list);
+                    adapter = new MyRecycle(MainActivity.this, list);
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
                 }
-                Collections.reverse (list);
-                adapter = new MyRecycle(MainActivity.this,list);
-                recyclerView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-            }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
     }
 }

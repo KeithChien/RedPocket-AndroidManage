@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_time_set"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.user.redpocket_androidmanage.TimeSet">
+
+
+    <TextView
+        android:text="@string/enddate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="69dp"
+        android:id="@+id/endDateShow"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:layout_below="@+id/startDateSet"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="@string/enddateset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/endDateSet"
+        android:gravity="center"
+        android:layout_marginTop="49dp"
+        android:textSize="30sp"
+        android:layout_below="@+id/endDateShow"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="@string/startdateset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startDateSet"
+        tools:ignore="RelativeOverlap"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/startDateShow"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startDateShow"
+        android:text="@string/startdate"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_marginTop="36dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/endDateShow" />
+
+    <Button
+        android:text="@string/done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:id="@+id/TimeDoneBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="15dp" />
+
+</RelativeLayout>

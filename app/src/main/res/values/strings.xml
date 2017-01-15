@@ -5,10 +5,22 @@
     <string name="score">Score</string>
     <string name="barinfo">BarInfo</string>
     <string name="button">Button</string>
-    <string name="update">Update</string>
-    <string name="serchtop">SerchTop</string>
-    <string name="barupdate">BarUpdate</string>
-    <string name="userscore">UserScore</string>
+    <string name="update">更新</string>
+    <string name="serchtop">搜尋</string>
+    <string name="barupdate">更新信息</string>
+    <string name="userscore">使用者分數</string>
     <string name="end_date">End Date</string>
     <string name="start_date">Start Date</string>
+    <string name="account">帳號</string>
+    <string name="login">登入</string>
+    <string name="password">密碼</string>
+    <string name="title_activity_time_set">TimeSet</string>
+    <string name="enddateset">截止日期設定</string>
+    <string name="enddate">截止日</string>
+    <string name="startdate">起始日</string>
+    <string name="startdateset">起始日期設定</string>
+    <string name="done">送出</string>
+    <string name="timeset">Timeset</string>
+    <string name="cancel">取消</string>
+    <string name="timeset1">時間設定</string>
 </resources>

@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 eMailLogin();
                checkManager();
-              // finish ();
+               finish ();
 
             }
         });
@@ -51,8 +51,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void eMailLogin() {
-        final String email = "Manager@gmail.com";
-        final String password = "Manager@gmail.com";
+         String email = "manager@gmail.com";
+         String password = "manager@gmail.com";
 
 
         mfirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

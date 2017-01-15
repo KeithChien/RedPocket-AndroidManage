@@ -26,6 +26,7 @@ public class Top100Activity extends AppCompatActivity {
     RecyclerView queryTopview;
     MyRecycle topadapter;
     String knode;
+    String knodeid;
 
 
     @Override
@@ -41,14 +42,23 @@ public class Top100Activity extends AppCompatActivity {
         Intent intent =this.getIntent ();
         Bundle bundle = intent.getExtras ();
         knode = bundle.getString ("node");
-        queryTop ();
+        myRef.child (knode).child ("id").addValueEventListener (new ValueEventListener () {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                knodeid = dataSnapshot.getValue().toString();
+                queryTop();
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
 
     }
     public void queryTop(){
 
-        Query query = myRef.child (knode).child ("scores").orderByChild ("score").limitToFirst (100);
+        Query query = database.getReference ("scores").child (knodeid).orderByChild ("score").limitToLast (100);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
