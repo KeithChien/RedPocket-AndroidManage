@@ -128,19 +128,15 @@ public class TimeSet extends AppCompatActivity {
                     long endTime = (long) dataSnapshot.child ("endDateInterval").getValue ();
                     int times =  Integer.parseInt(dataSnapshot.getKey ());
 
-                    if (endTime > startTimetoLong || endTime >endTimetoLong || startTimetoLong > endTimetoLong){
-
+                    if (endTime < startTimetoLong && endTime < endTimetoLong && startTimetoLong < endTimetoLong){
+                    String key = myRef.push ().getKey ();
+                    times = times + 1;
+                    String ntimes;
+                    ntimes = String.valueOf (times);
+                    ScoreBoardTime scoreBoardTime = new ScoreBoardTime (key, startTimetoLong, endTimetoLong);
+                    myRef.child (ntimes).setValue (scoreBoardTime);
                     }
-                    else {
 
-                        String key = myRef.push ().getKey ();
-                        times = times + 1;
-                        String ntimes;
-                        ntimes = String.valueOf (times);
-                        ScoreBoardTime scoreBoardTime = new ScoreBoardTime (key, startTimetoLong, endTimetoLong);
-                        myRef.child (ntimes).setValue (scoreBoardTime);
-
-                    }
                 }
                 else {
                     String key = myRef.push ().getKey ();

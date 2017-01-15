@@ -17,10 +17,10 @@
         android:orderInCategory="100"
         android:icon="@mipmap/ic_launcher"
         app:showAsAction="never"/>
-    <item android:id="@+id/action_settings3"
+    <!---<item android:id="@+id/action_settings3"
         android:title="@string/timeset1"
         android:orderInCategory="100"
         android:icon="@mipmap/ic_launcher"
-        app:showAsAction="never"/>
+        app:showAsAction="never"/>-->
 
 </menu>
